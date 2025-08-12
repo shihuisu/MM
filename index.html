@@ -1,0 +1,270 @@
+<!-- 
+References:
+1. Fox, K.C.R., Fitz, N.S., & Reiner, P.B. (2017). The multiplicity of memory enhancement: Practical and ethical implications of the diverse neural substrates underlying human memory systems. Neuroethics, 10, 375–388.
+2. Pawlak, W.A., et al. (2025). Neuromorphic algorithms for brain implants: a review. Frontiers in Neuroscience.
+3. González-Márquez, C. (2023). Neuromodulation and memory: exploring ethical ramifications in memory modification treatment via implantable neurotechnologies. Frontiers in Psychology.
+4. Wired. (2018). A Brain-Boosting Prosthesis Moves From Rats to Humans. Wired.
+5. ScienceDaily. (2025). Progress and challenges in brain implants. The Lancet Digital Health.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TRACE</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<audio id="bgm" autoplay loop>
+  <source src="sound/bgm.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<script>
+  const bgm = document.getElementById('bgm');
+  bgm.volume = 0.35; 
+
+  document.addEventListener('click', () => {
+    if (bgm.paused) bgm.play();
+  });
+</script>
+
+  <!-- 封面页 -->
+  <section class="cover" id="cover">
+    <div class="cover-content">
+      <h1 class="main-title">TRACE</h1>
+      <button class="enter-button" onclick="scrollToContent()">ENTER</button>
+    </div>
+  </section>
+
+  <!-- 第1页 -->
+  <section class="page" id="page1">
+    <div class="page-content">
+      <img src="images/2.jpg" class="page-image" alt="Page Image" />
+      <div class="page-text">
+        <p>In 2047, education no longer happens in classrooms. It is streamed, synchronized, and implanted.</p>
+        <p>The Mirror Moon neuro-learning chip, once created to support children with learning disorders, is now mandatory for all citizens.</p>
+        <p>At first, the chip promised equity. Now, it delivers uniformity.</p>
+        <p><i>This is the world I live in. And this is the story of how I started to resist.</i></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第2页 -->
+  <section class="page" id="page2">
+    <!-- 上段文字 -->
+    <div class="text-content">
+      <p>That day after class, I sat alone on the curb outside the learning node. A boy was drawing on the pavement with chalk. Slow, careful lines. Shapes that disappeared under the soles of passing shoes. I watched him for a long time. Something about the slowness felt sacred.</p>
+    </div>
+
+    <!-- 中间主句（跳动） -->
+    <div class="breathe-container">
+      <p class="breathe-quote">"We were not made to update."<br>"I forget, therefore I am."</p>
+    </div>
+
+    <!-- 中段文字 -->
+    <div class="text-content">
+      <p>A few days later, I returned. There were new writings. Tiny messages, scattered around the bricks. Short, honest, painful things:</p>
+    </div>
+
+    <!-- 呼吸留言动画 -->
+    <div class="breathe-messages">
+      <p class="breathe-line">“I remember my mother's voice.”</p>
+      <p class="breathe-line">“My name isn't a module.”</p>
+      <p class="breathe-line">“We don't grow. We download.”</p>
+    </div>
+
+    <!-- 下段文字 -->
+    <div class="text-content">
+      <p>No signatures. Just presence. I copied some into my old notebook — the one the chip said I didn’t need anymore.</p>
+    </div>
+
+    <!-- 按钮 -->
+    <button class="next-button" onclick="scrollToPage3()">Continue ⤵</button>
+  </section>
+
+  <!-- 第3页 -->
+  <section class="page" id="page3">
+    <div class="page-content">
+      <img src="images/3.jpg" class="page-image" alt="Secret message on grid wall" />
+      <div class="page-text">
+        <p>Downstairs in the back of an abandoned library, behind a shelf of dusty instruction manuals, someone had left a note taped to the wall:</p>
+        <p><i>“Read tonight. No devices.”</i></p>
+        <p>Just that.</p>
+        <p>I followed the sound of whispering. Through cracked tiles and shadowed stairwells, I walked into the quiet.</p>
+        <p>The walls buzzed faintly — like they remembered. Not noise, but the memory of noise. My footsteps felt louder than they should have. Every corner of that space carried the feeling of being watched, not by people, but by time.</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="java.js"></script>
+</body>
+</html>
+
+<!-- 第4页 -->
+<section class="page" id="page4">
+  <div class="image-text-row">
+    <div class="image-frame left" title="A damaged memory panel — touch to reveal hidden data">
+      <img src="images/4.jpg" alt="Distorted memory" />
+    </div>
+    <div class="text-frame right">
+      <p>There was a rusted panel beside the wall—its screen cracked, but faintly pulsing. I placed my hand over it, instinctively. A low vibration, and then...</p >
+      <p>The hallway flickered.</p >
+      <p>Files spilled across the air. Memories—not mine, but someone's. Maybe hundreds of someones. Overlapping. Fragmented. Voices layered like static, blurred with dates and codes.</p >
+    </div>
+  </div>
+
+  <div class="image-text-row">
+    <div class="text-frame left">
+      <p>I stood there as they shimmered around me. Faces laughing, crying, deleting. Whole lives scrolled in loops. Some stopped. Some never stopped.</p >
+      <p>One moment froze: a girl writing in chalk on the back of a corridor wall. She looked like me. She wrote: <i>I am not a file.</i></p >
+      <p>And the image faded.</p >
+    </div>
+    <div class="image-frame right" title="A looping memory construct — always incomplete">
+      <img src="images/5.jpg" alt="Circular memory structure" />
+    </div>
+  </div>
+
+  <div class="cta-row">
+    <button id="thoughtBtn" class="glow-btn" onclick="openThought()">Click</button>
+  </div>
+
+  <div id="thoughtModal" class="modal" aria-hidden="true">
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="qTitle">
+      <button class="modal__close" id="modalClose" aria-label="Close">×</button>
+      <h3 id="qTitle">Think with me</h3>
+      <p class="modal__text">
+        If your memory began fragmenting like this, would you pay for the upgrade to restore it?
+        Or would you accept the gaps—and keep what stays?
+      </p >
+    </div>
+  </div>
+</section>
+
+<script src="java.js" defer></script>
+</section>
+<!-- 5 -->
+<section id="page5">
+  <div class="text-block fade-in-text">
+    <p>
+      It started with brief disruptions. Flickers. Static. Forgotten names.  
+      I thought it was fatigue, but it spread—small memories scattered like dust.
+    </p>
+    <p>
+      Without the upgrade, the neural cloud began to destabilize. Files once intact  
+      dissolved into fragments. I tried to recall—tried to grasp—  
+      but all I saw were flashes...
+    </p>
+  </div>
+
+  <div class="video-container fade-in-text">
+    <video id="memoryVideo" preload="auto" controls>
+      <source src="video/MM.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="text-block fade-in-text">
+    <p>
+      After that surge of noise, something aligned. The system restructured.  
+      A testimony file was born—catalogued, labeled, and locked inside the archive.
+    </p>
+  </div>
+</section>
+<!-- 6-->
+<section class="page" id="page6">
+  <div class="text-block fade-in-text">
+    <p>
+      After the flashes, the room quieted. No score. No prompts. 
+      Just the weight of our own sentences. I kept thinking about the chalk—
+      how a slow line could resist a perfect stream.
+    </p >
+    <p>
+      They asked for a name. I didn’t give the one in the system. 
+      I gave the one I wrote by hand.
+    </p >
+  </div>
+
+  
+  <div class="prompt-deck fade-in-text">
+    <button class="pill white-glow" data-answer="A child started it. But it spread because adults were tired of being optimized.">
+      Who wrote the first line on the wall?
+    </button>
+    <button class="pill white-glow" data-answer="Like memory arriving late: warm edges, missing centers. It felt human.">
+      What did the room feel like?
+    </button>
+    <button class="pill white-glow" data-answer="Because learning without forgetting isn’t learning—it's storage.">
+      Why resist the updates?
+    </button>
+  </div>
+
+  <div id="answerPop" class="answer-pop" aria-hidden="true">
+    <div class="answer-card">
+      <p id="answerText"></p >
+      <button class="close-pop">Close</button>
+    </div>
+  </div>
+
+ 
+  <div class="text-block fade-in-text end-note">
+    <p>
+      I walked home without renewing. The chip still hummed, 
+      but the silence inside me was louder—and finally mine.
+    </p >
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="page" id="page7" aria-labelledby="p7-title">
+  <div class="p7-text fade-in-text" id="p7-title">
+    <p>The alert arrived before dawn—no chime, only a glow behind the eye.
+      <span class="p7-quote">“Subscription state: degraded.”</span>
+    </p >
+    <p>Outside, the update nodes pulsed faintly in the mist. For years I had trusted that hum.
+      Now, I wasn’t sure if it belonged to me… or to the system.</p >
+  </div>
+
+
+  <div class="p7-cta-wrap">
+    <button class="p7-upgrade-btn" aria-haspopup="dialog" aria-controls="p7-modal" onclick="openP7()">
+      Upgrade Now
+    </button>
+  </div>
+
+  <div id="p7-modal" class="p7-modal" role="dialog" aria-modal="true" aria-labelledby="p7-modal-title" aria-describedby="p7-modal-desc">
+    <div class="p7-modal-card" role="document">
+      <button class="p7-close" aria-label="Close dialog" onclick="closeP7()">×</button>
+      <h2 id="p7-modal-title">Subscription Required</h2>
+      <p id="p7-modal-desc" class="p7-desc">Your neural cloud stability is at risk. Choose a plan to restore uninterrupted access:</p >
+
+      <ul class="p7-plan-list">
+        <li><span class="p7-plan-name">30‑Day Recall Memory</span><span class="p7-plan-price">$19.99 / mo</span></li>
+        <li><span class="p7-plan-name">Instant Emotion Index</span><span class="p7-plan-price">$39.99 / mo</span></li>
+        <li><span class="p7-plan-name">Archive Consciousness Sync</span><span class="p7-plan-price">$79.99 / mo</span></li>
+      </ul>
+
+      <div class="p7-actions">
+        <button class="p7-secondary" onclick="closeP7()">Maybe later</button>
+        <button class="p7-primary">Proceed to Upgrade</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="page" id="page8" aria-labelledby="p8-title">
+  <div class="p8-wrap">
+
+    <div class="p8-body">
+      <p>I walked home past the quiet walls. The system pinged once, then fell silent. No prompts. No scores. Just the sound of shoes on concrete and the soft ache of something un-updated.</p >
+      <p>On my desk lay the folded paper: <i>You’re not alone.</i> I traced the letters with my thumb until the ink blurred. It felt like a name I hadn’t earned and a promise I couldn’t afford.</p >
+      <p>I still have the chip. I still pass the update centers. I still pretend, mostly. But some nights I write—slowly, by hand—because if I forget on my own terms, at least it was mine.</p >
+      <p>In a world that streams knowledge and compresses thought, a single sentence can be an opening. Not to remember, but to resist.</p >
+    </div>
+
+    <div class="p8-actions">
+      <button class="next-button" onclick="document.getElementById('cover').scrollIntoView({behavior:'smooth'})">⟲ Restart</button>
+    </div>
+  </div>
+</section>
