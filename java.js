@@ -13,6 +13,7 @@
   const bgm = document.getElementById('bgm');
   const chapters = [...document.querySelectorAll('.page[data-chapter]')];
   let activeIndex = 0;
+  let endingChosen = false;
   let touchStartX = 0;
   let touchStartY = 0;
 
@@ -36,6 +37,7 @@
 
   const showChapter = (nextIndex, direction = 1) => {
     if (nextIndex < 0 || nextIndex >= chapters.length || nextIndex === activeIndex) return;
+    if (activeIndex === chapters.length - 2 && nextIndex === chapters.length - 1 && !endingChosen) return;
     const outgoing = chapters[activeIndex];
     const incoming = chapters[nextIndex];
     outgoing.classList.remove('is-active');
@@ -59,7 +61,9 @@
     progressFill.style.width = `${((activeIndex + 1) / chapters.length) * 100}%`;
     prevButton.disabled = activeIndex === 0;
     nextButton.disabled = activeIndex === chapters.length - 1;
+    nextButton.classList.toggle('is-concealed', activeIndex === chapters.length - 2);
     nextButton.querySelector('span').textContent = activeIndex === chapters.length - 2 ? 'Final page' : 'Next';
+    if (activeIndex === chapters.length - 2) endingChosen = false;
   };
 
   const enterStory = () => {
@@ -149,6 +153,53 @@
   const p7Close = document.getElementById('p7Close');
   const p7Later = document.getElementById('p7Later');
   const p7Proceed = document.getElementById('p7Proceed');
+  const endingTransition = document.getElementById('endingTransition');
+  const endingTransitionText = document.getElementById('endingTransitionText');
+  const endingKicker = document.getElementById('endingKicker');
+  const endingBody = document.getElementById('endingBody');
+  const endings = {
+    resist: {
+      kicker: '08 / A sentence left open',
+      paragraphs: [
+        'I walked home past the quiet walls. The system pinged once, then fell silent. No prompts. No scores. Just the sound of shoes on concrete and the soft ache of something un-updated.',
+        'On my desk lay the folded paper: You\u2019re not alone. I traced the letters with my thumb until the ink blurred. It felt like a name I hadn\u2019t earned and a promise I couldn\u2019t afford.',
+        'I still have the chip. I still pass the update centres. I still pretend, mostly. But some nights I write - slowly, by hand - because if I forget on my own terms, at least it was mine.',
+        'In a world that streams knowledge and compresses thought, a single sentence can be an opening. Not to remember, but to resist.'
+      ]
+    },
+    upgrade: {
+      kicker: '08 / Renewal',
+      paragraphs: [
+        'The confirmation arrived without sound. The update moved through me as a clean white pulse.',
+        'Names returned. Dates aligned. The ache disappeared so quickly that I wondered whether the system had repaired the memory - or only repaired my reaction to losing it.',
+        'On my desk, the folded paper still read: You\u2019re not alone. For a moment I knew exactly what it meant. Then the interface marked the thought as resolved.',
+        'Everything was available again. I could no longer tell which part of that relief was mine.'
+      ]
+    }
+  };
+  const setEnding = (type) => {
+    const ending = endings[type] || endings.resist;
+    endingKicker.textContent = ending.kicker;
+    endingBody.replaceChildren(...ending.paragraphs.map((copy) => {
+      const paragraph = document.createElement('p');
+      paragraph.textContent = copy;
+      return paragraph;
+    }));
+  };
+  const transitionToEnding = (type) => {
+    endingChosen = true;
+    setEnding(type);
+    endingTransitionText.textContent = type === 'upgrade'
+      ? 'Connection confirmed.'
+      : 'Connection deferred.';
+    endingTransition.className = `ending-transition is-active ${type}`;
+    endingTransition.setAttribute('aria-hidden', 'false');
+    window.setTimeout(() => showChapter(chapters.length - 1, 1), 420);
+    window.setTimeout(() => {
+      endingTransition.className = 'ending-transition';
+      endingTransition.setAttribute('aria-hidden', 'true');
+    }, 1050);
+  };
   const toggleP7 = (open) => {
     p7Modal.classList.toggle('is-open', open);
     p7Modal.setAttribute('aria-hidden', String(!open));
@@ -158,11 +209,22 @@
   };
   p7Open.addEventListener('click', () => toggleP7(true));
   p7Close.addEventListener('click', () => toggleP7(false));
-  p7Later.addEventListener('click', () => toggleP7(false));
+  p7Later.addEventListener('click', () => {
+    toggleP7(false);
+    transitionToEnding('resist');
+  });
   p7Proceed.addEventListener('click', () => {
-    p7Proceed.textContent = 'Connection refused';
+    p7Proceed.textContent = 'Connecting...';
     p7Proceed.disabled = true;
-    window.setTimeout(() => toggleP7(false), 900);
+    window.setTimeout(() => {
+      p7Proceed.textContent = 'Connected';
+    }, 550);
+    window.setTimeout(() => {
+      toggleP7(false);
+      transitionToEnding('upgrade');
+      p7Proceed.textContent = 'Proceed to upgrade';
+      p7Proceed.disabled = false;
+    }, 1100);
   });
   p7Modal.addEventListener('click', (event) => {
     if (event.target === p7Modal) toggleP7(false);
