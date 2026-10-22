@@ -61,7 +61,7 @@
     progressFill.style.width = `${((activeIndex + 1) / chapters.length) * 100}%`;
     prevButton.disabled = activeIndex === 0;
     nextButton.disabled = activeIndex === chapters.length - 1;
-    nextButton.classList.toggle('is-concealed', activeIndex === chapters.length - 2);
+    nextButton.classList.toggle('is-concealed', activeIndex >= chapters.length - 2);
     nextButton.querySelector('span').textContent = activeIndex === chapters.length - 2 ? 'Final page' : 'Next';
     if (activeIndex === chapters.length - 2) endingChosen = false;
   };
