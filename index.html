@@ -109,7 +109,7 @@
               <figcaption>A looping memory construct — always incomplete.</figcaption>
             </figure>
           </div>
-          <button id="thoughtBtn" class="glow-btn" type="button">Enter the memory</button>
+          <button id="thoughtBtn" class="glow-btn" type="button">Open memory</button>
         </div>
       </section>
 
@@ -164,20 +164,20 @@
 
       <section class="page" id="page8" data-chapter="08" aria-label="Chapter 8 of 8" hidden>
         <div class="p8-wrap">
-          <p class="chapter-kicker">08 / A sentence left open</p>
-          <div class="p8-body">
+          <p class="chapter-kicker" id="endingKicker">08 / A sentence left open</p>
+          <div class="p8-body" id="endingBody">
             <p>I walked home past the quiet walls. The system pinged once, then fell silent. No prompts. No scores. Just the sound of shoes on concrete and the soft ache of something un-updated.</p>
             <p>On my desk lay the folded paper: <em>You’re not alone.</em> I traced the letters with my thumb until the ink blurred. It felt like a name I hadn’t earned and a promise I couldn’t afford.</p>
             <p>I still have the chip. I still pass the update centres. I still pretend, mostly. But some nights I write — slowly, by hand — because if I forget on my own terms, at least it was mine.</p>
             <p>In a world that streams knowledge and compresses thought, a single sentence can be an opening. Not to remember, but to resist.</p>
           </div>
-          <div class="project-note">
-            <span>Individual project</span>
-            <span>Concept, narrative, interaction design, visual direction and front-end development by Shihui Su.</span>
-          </div>
           <button class="next-button" id="restartButton" type="button">Restart</button>
         </div>
       </section>
+
+      <div class="ending-transition" id="endingTransition" aria-live="polite" aria-hidden="true">
+        <p id="endingTransitionText"></p>
+      </div>
     </div>
 
     <nav class="reader-nav" aria-label="Story navigation">
@@ -190,7 +190,7 @@
   <div id="thoughtModal" class="modal" aria-hidden="true">
     <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="qTitle">
       <button class="modal__close" id="modalClose" type="button" aria-label="Close">×</button>
-      <h2 id="qTitle">Think with me</h2>
+      <h2 id="qTitle">Sync with me</h2>
       <p class="modal__text">If your memory began fragmenting like this, would you pay for the upgrade to restore it? Or would you accept the gaps — and keep what stays?</p>
     </div>
   </div>
@@ -198,7 +198,7 @@
   <div id="answerPop" class="answer-pop" aria-hidden="true">
     <div class="answer-card" role="dialog" aria-modal="true" aria-label="Answer">
       <p id="answerText"></p>
-      <button class="close-pop" type="button">Close</button>
+      <button class="close-pop" type="button" aria-label="Close answer">Close</button>
     </div>
   </div>
 
